@@ -1,15 +1,18 @@
-import express from 'express'
-import dotenv from "dotenv"
+import express from 'express';
+import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import { connect } from 'mongoose';
-
+import productRoutes from "./routes/product.route.js";
 dotenv.config();
 
-const app=express()
+const app=express();
 
-app.get("/products",(req,res)=>{} )
+app.use(express.json());//allows us to use json data in the req.body
+
+app.use("/api/products",productRoutes);
+
+
 
 app.listen(5000, ()=>{
     connectDB();
-    console.log('Server started at http://localhost:5000 hello')
-});
+    console.log('Server started at http://localhost:5000')
+}); 
